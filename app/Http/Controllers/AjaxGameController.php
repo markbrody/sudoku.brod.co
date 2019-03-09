@@ -13,8 +13,9 @@ class AjaxGameController extends Controller
         return response()->json($game)->cookie("game_id", $id, 1440);
     }
 
-    public function store() {
-        $puzzle = Puzzle::inRandomOrder()->first();
+    public function store(Request $request) {
+        $difficulty = $request->input("difficulty") ?? 1;
+        $puzzle = Puzzle::where("difficulty", $difficulty)->inRandomOrder()->first();
         $game = Game::create([
             "moves" => $puzzle->start,
             "puzzle_id" => $puzzle->id,

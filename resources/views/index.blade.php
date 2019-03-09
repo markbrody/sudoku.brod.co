@@ -124,9 +124,9 @@ div.sudoku-grid-cell:nth-child(3n) {
 
         <div id="popover-content" style="display: none;">
             <ul class="list-group custom-popover">
-                <li class="list-group-item"><a href="#" class="new-game-difficulty" data-id="1">Easy</a></li>
-                <li class="list-group-item"><a href="#" class="new-game-difficulty" data-id="2">Medium</a></li>
-                <li class="list-group-item"><a href="#" class="new-game-difficulty" data-id="3">Hard</a></li>
+                <li class="list-group-item"><a href="#" class="new-game-difficulty" id="difficulty_1">Easy</a></li>
+                <li class="list-group-item"><a href="#" class="new-game-difficulty" id="difficulty_2">Medium</a></li>
+                <li class="list-group-item"><a href="#" class="new-game-difficulty" id="difficulty_3">Hard</a></li>
             </ul>
         </div>
 
@@ -193,7 +193,7 @@ div.sudoku-grid-cell:nth-child(3n) {
                 dataType: "json",
                 data: {
                     _token: "{{ csrf_token() }}",
-                    difficulty: $(this).data("id"),
+                    difficulty: $(this).attr("id")[$(this).attr("id").length - 1],
                 },
                 success: function(response) {
                     $("[data-toggle='popover']").popover("hide");
