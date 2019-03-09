@@ -81,7 +81,7 @@ div.sudoku-grid-cell:nth-child(3n) {
     text-align: center;
 }
 
-.custom-popover li:nth-child(2) {
+.custom-popover li:nth-child(n+2) {
     border-top: 1px solid #ccc !important;
 }
 
@@ -89,7 +89,8 @@ div.sudoku-grid-cell:nth-child(3n) {
     border-top: 1px solid #ccc !important;
 }
 
-.new-game-difficulty {
+.new-game-difficulty,
+.cancel-new-game {
     cursor: pointer;
 }
 
@@ -128,9 +129,10 @@ div.sudoku-grid-cell:nth-child(3n) {
 
         <div id="popover-content" style="display: none;">
             <ul class="list-group custom-popover">
-                <li class="list-group-item"><a href="javascript:;" class="new-game-difficulty" id="difficulty_1">Easy</a></li>
-                <li class="list-group-item"><a href="javascript:;" class="new-game-difficulty" id="difficulty_2">Medium</a></li>
-                <li class="list-group-item"><a href="javascript:;" class="new-game-difficulty" id="difficulty_3">Hard</a></li>
+                <li class="list-group-item"><a href="javascript:;" class="text-primary new-game-difficulty" id="difficulty_1">Easy</a></li>
+                <li class="list-group-item"><a href="javascript:;" class="text-primary new-game-difficulty" id="difficulty_2">Medium</a></li>
+                <li class="list-group-item"><a href="javascript:;" class="text-primary new-game-difficulty" id="difficulty_3">Hard</a></li>
+                <li class="list-group-item"><a href="javascript:;" class="text-danger cancel-new-game" id="cancel-new-game">Cancel</a></li>
             </ul>
         </div>
 
@@ -189,22 +191,25 @@ div.sudoku-grid-cell:nth-child(3n) {
     });
 
     $(document).on("click", ".new-game-difficulty", function(e) {
-        if (confirm("Are you sure?")) {
-            $(".sudoku-grid-cell").removeClass("selected highlighted").text("");
-            $.ajax({
-                url: "/ajax/games",
-                type: "POST",
-                dataType: "json",
-                data: {
-                    _token: "{{ csrf_token() }}",
-                    difficulty: $(this).attr("id")[$(this).attr("id").length - 1],
-                },
-                success: function(response) {
-                    $("[data-toggle='popover']").popover("hide");
-                    fill_grid(response);
-                }
-            });
-        }
+        $(".sudoku-grid-cell").removeClass("selected highlighted").text("");
+        $.ajax({
+            url: "/ajax/games",
+            type: "POST",
+            dataType: "json",
+            data: {
+                _token: "{{ csrf_token() }}",
+                difficulty: $(this).attr("id")[$(this).attr("id").length - 1],
+            },
+            success: function(response) {
+                $("[data-toggle='popover']").popover("hide");
+                fill_grid(response);
+            }
+        });
+        e.stopPropagation();
+    });
+
+    $(document).on("click", "#cancel-new-game", function(e) {
+        $("[data-toggle='popover']").popover("hide");
         e.stopPropagation();
     });
 
