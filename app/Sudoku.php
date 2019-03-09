@@ -178,7 +178,7 @@ Class Sudoku
     private function next_random($possible) {
         $max = 9;
         for ($x=0;$x<=80;$x++) {
-            if ((@count($possible[$x])<=$max) and (@count($possible[$x])>0)) {
+            if (((@count($possible[$x])) <= $max) and ((@count($possible[$x])) > 0)) {
                 $max = count($possible[$x]);
                 $min_choices = $x;
             }
@@ -201,7 +201,7 @@ Class Sudoku
             Puzzle::create([
                 "start" => implode($this->grid),
                 "solution" => implode($validation->grid),
-                "difficulty" => 1,
+                "difficulty" => $this->grade_difficulty($this->grid),
             ]);
         else
             $this->generate();
@@ -237,6 +237,19 @@ Class Sudoku
                 return null;
         }
         return $sudoku;
+    }
+
+    private function grade_difficulty(array $grid): float {
+        $total = 0;
+        for ($i=0; $i<10; $i++) {
+            $sudoku = new self($grid);
+            $sudoku->solve();
+            $total += $sudoku->moves;
+        }
+    
+        $total /= 10;
+        echo "grade $total\n";
+        return $total < 53 ? 1 : ( $total > 60 ? 3 : 2 );
     }
 
 }
