@@ -89,6 +89,10 @@ div.sudoku-grid-cell:nth-child(3n) {
     border-top: 1px solid #ccc !important;
 }
 
+.new-game-difficulty {
+    cursor: pointer;
+}
+
 </style>
     </head>
     <body>
@@ -124,9 +128,9 @@ div.sudoku-grid-cell:nth-child(3n) {
 
         <div id="popover-content" style="display: none;">
             <ul class="list-group custom-popover">
-                <li class="list-group-item"><a href="#" class="new-game-difficulty" id="difficulty_1">Easy</a></li>
-                <li class="list-group-item"><a href="#" class="new-game-difficulty" id="difficulty_2">Medium</a></li>
-                <li class="list-group-item"><a href="#" class="new-game-difficulty" id="difficulty_3">Hard</a></li>
+                <li class="list-group-item"><a href="javascript:;" class="new-game-difficulty" id="difficulty_1">Easy</a></li>
+                <li class="list-group-item"><a href="javascript:;" class="new-game-difficulty" id="difficulty_2">Medium</a></li>
+                <li class="list-group-item"><a href="javascript:;" class="new-game-difficulty" id="difficulty_3">Hard</a></li>
             </ul>
         </div>
 
