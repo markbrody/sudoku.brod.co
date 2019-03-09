@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Online Sudoku</title>
+        <title>Online Sudoku Puzzle</title>
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <style>
@@ -72,6 +72,23 @@ div.sudoku-grid-cell:nth-child(3n) {
     color: #f00;
 }
 
+.popover-title {
+    text-align: center;
+}
+
+.custom-popover li {
+    border: none !important;
+    text-align: center;
+}
+
+.custom-popover li:nth-child(2) {
+    border-top: 1px solid #ccc !important;
+}
+
+.custom-popover li:last-child {
+    border-top: 1px solid #ccc !important;
+}
+
 </style>
     </head>
     <body>
@@ -98,7 +115,19 @@ div.sudoku-grid-cell:nth-child(3n) {
             @endforeach
             </div>
                 </div>
-            <button id="new-game" class="btn btn-primary w-100 mt-4">New Game</button>
+            <div class="row mt-4" style="justify-content: center">
+                <div class="col-md-6 col-sm-12">
+                    <button id="new-game" class="btn btn-primary w-100" data-toggle="popover" data-placement="top" data-toggle="popover">New Game</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="popover-content" style="display: none;">
+            <ul class="list-group custom-popover">
+                <li class="list-group-item"><a href="#" class="new-game-difficulty" data-id="1">Easy</a></li>
+                <li class="list-group-item"><a href="#" class="new-game-difficulty" data-id="2">Medium</a></li>
+                <li class="list-group-item"><a href="#" class="new-game-difficulty" data-id="3">Hard</a></li>
+            </ul>
         </div>
 
         <div id="winning-modal" class="modal fade" tabindex="-1" role="dialog">
@@ -151,6 +180,26 @@ div.sudoku-grid-cell:nth-child(3n) {
             else if (selected_cell >= 0)
                 $("div[data-id=" + selected_cell + "]").text("");
             update();
+        }
+        e.stopPropagation();
+    });
+
+    $(document).on("click", ".new-game-difficulty", function(e) {
+        if (confirm("Are you sure?")) {
+            $(".sudoku-grid-cell").removeClass("selected highlighted").text("");
+            $.ajax({
+                url: "/ajax/games",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    difficulty: $(this).data("id"),
+                },
+                success: function(response) {
+                    $("[data-toggle='popover']").popover("hide");
+                    fill_grid(response);
+                }
+            });
         }
         e.stopPropagation();
     });
@@ -231,21 +280,13 @@ div.sudoku-grid-cell:nth-child(3n) {
         cell.addClass("selected");
     }
 
-    $("#new-game").on("click", function() {
-        if (confirm("Are you sure?"))
-            $(".sudoku-grid-cell").removeClass("selected highlighted").text("");
-            $.ajax({
-                url: "/ajax/games",
-                type: "POST",
-                dataType: "json",
-                data: {
-                    _token: "{{ csrf_token() }}",
-                },
-                success: function(response) {
-                    fill_grid(response);
-                }
-            });
+    $("[data-toggle='popover']").popover({
+        html: true,
+        content: function() {
+            return $("#popover-content").html();
+        }
     });
+
 </script>
 
     </body>
