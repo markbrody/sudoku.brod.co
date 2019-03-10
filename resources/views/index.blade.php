@@ -26,6 +26,13 @@ body {
     margin: auto;
 }
 
+.keypad-cell {
+    display: table-cell;
+    width: calc(20vh / 1.8);
+    height: calc(11.111vh / 1.8);
+    text-align: center;
+}
+
 .sudoku-grid-row:first-child {
     border-top: 2px solid #666;
 }
@@ -72,6 +79,15 @@ div.sudoku-grid-cell:nth-child(3n) {
     color: #f00;
 }
 
+.new-game-difficulty,
+.cancel-new-game {
+    cursor: pointer;
+}
+
+.new-game-button {
+    width: calc(100vh / 1.8);
+}
+
 .popover-title {
     text-align: center;
 }
@@ -89,10 +105,6 @@ div.sudoku-grid-cell:nth-child(3n) {
     border-top: 1px solid #ccc !important;
 }
 
-.new-game-difficulty,
-.cancel-new-game {
-    cursor: pointer;
-}
 
 </style>
     </head>
@@ -102,7 +114,7 @@ div.sudoku-grid-cell:nth-child(3n) {
                 <div class="sudoku-grid">
                 @php $i = 0; @endphp
                 @foreach (range(1, 9) as $row)
-                    <div class="sudoku-grid-row" id>
+                    <div class="sudoku-grid-row">
                     @foreach (range(1, 9) as $col)
                         <div class="sudoku-grid-cell" data-id="{{ $i++ }}" ></div>
                     @endforeach
@@ -110,20 +122,26 @@ div.sudoku-grid-cell:nth-child(3n) {
                 @endforeach
                 </div>
             </div>
-
+            <div class="row">
                 <div class="keypad">
-            <div class="row align-items-center">
-            @foreach (range(0, 9) as $value)
-                <div class="col">
-                    <button class="btn btn-outline-dark mt-4 rounded-0 keypad-button" data-value="{{ $value }}">{!! $value ?: "&ndash;" !!}</button>
+                @foreach (range(0, 4) as $value)
+                    <div class="keypad-cell">
+                        <button class="btn btn-outline-dark mt-2 rounded-0 keypad-button" data-value="{{ $value }}">{!! $value ?: "&ndash;" !!}</button>
+                    </div>
+                @endforeach
                 </div>
-            @endforeach
             </div>
+            <div class="row">
+                <div class="keypad">
+                @foreach (range(5, 9) as $value)
+                    <div class="keypad-cell">
+                        <button class="btn btn-outline-dark mt-2 rounded-0 keypad-button" data-value="{{ $value }}">{{ $value }}</button>
+                    </div>
+                @endforeach
                 </div>
-            <div class="row mt-4" style="justify-content: center">
-                <div class="col-md-6 col-sm-12">
-                    <button id="new-game" class="btn btn-primary w-100" data-toggle="popover" data-placement="top" data-toggle="popover">New Game</button>
-                </div>
+            </div>
+            <div class="row mt-2" style="justify-content: center">
+                <button id="new-game" class="btn btn-primary new-game-button" data-toggle="popover" data-placement="top" data-toggle="popover">New Game</button>
             </div>
         </div>
 
@@ -297,7 +315,13 @@ div.sudoku-grid-cell:nth-child(3n) {
     });
 
 </script>
-
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-51049739-3"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-51049739-3');
+        </script>
     </body>
 <html>
 
