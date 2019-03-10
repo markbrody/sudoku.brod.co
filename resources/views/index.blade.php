@@ -84,24 +84,15 @@ div.sudoku-grid-cell:nth-child(3n) {
     cursor: pointer;
 }
 
-.new-game-button {
-    width: calc(100vh / 1.8);
-}
-
-.popover-title {
-    text-align: center;
-}
-
-.custom-popover li {
+.new-game-popover li {
     border: none !important;
-    text-align: center;
 }
 
-.custom-popover li:nth-child(n+2) {
+.new-game-popover li:nth-child(n+2) {
     border-top: 1px solid #ccc !important;
 }
 
-.custom-popover li:last-child {
+.new-game-popover li:last-child {
     border-top: 1px solid #ccc !important;
 }
 
@@ -109,6 +100,14 @@ div.sudoku-grid-cell:nth-child(3n) {
 </style>
     </head>
     <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light">
+            <div class="container">
+                <span class="navbar-brand">Sudoku</span>
+                <button id="new-game" class="btn btn-outline-light" data-toggle="popover" data-placement="bottom" data-toggle="popover">
+                    &equiv;
+                </button>
+            </div>
+        </nav>
         <div class="container">
             <div class="row">
                 <div class="sudoku-grid">
@@ -122,7 +121,7 @@ div.sudoku-grid-cell:nth-child(3n) {
                 @endforeach
                 </div>
             </div>
-            <div class="row">
+            <div class="row mt-2">
                 <div class="keypad">
                 @foreach (range(0, 4) as $value)
                     <div class="keypad-cell">
@@ -140,17 +139,39 @@ div.sudoku-grid-cell:nth-child(3n) {
                 @endforeach
                 </div>
             </div>
-            <div class="row mt-2" style="justify-content: center">
-                <button id="new-game" class="btn btn-primary new-game-button" data-toggle="popover" data-placement="top" data-toggle="popover">New Game</button>
-            </div>
         </div>
 
         <div id="popover-content" style="display: none;">
-            <ul class="list-group custom-popover">
-                <li class="list-group-item"><a href="javascript:;" class="text-primary new-game-difficulty" id="difficulty_1">Easy</a></li>
-                <li class="list-group-item"><a href="javascript:;" class="text-primary new-game-difficulty" id="difficulty_2">Medium</a></li>
-                <li class="list-group-item"><a href="javascript:;" class="text-primary new-game-difficulty" id="difficulty_3">Hard</a></li>
-                <li class="list-group-item"><a href="javascript:;" class="text-danger cancel-new-game" id="cancel-new-game">Cancel</a></li>
+            <ul class="list-group new-game-popover">
+                <li class="list-group-item">
+                    <a href="javascript:;" class="text-primary new-game-difficulty" id="difficulty_1">
+                        <div class="row text-nowrap">
+                            <div class="col-6">Easy</div>
+                            <div class="col-6">&starf; &star; &star;</div>
+                        </div>
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="javascript:;" class="text-primary new-game-difficulty" id="difficulty_2">
+                        <div class="row text-nowrap">
+                            <div class="col-6">Medium</div>
+                            <div class="col-6">&starf; &starf; &star;</div>
+                        </div>
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="javascript:;" class="text-primary new-game-difficulty" id="difficulty_3">
+                        <div class="row text-nowrap">
+                            <div class="col-6">Hard</div>
+                            <div class="col-6">&starf; &starf; &starf;</div>
+                        </div>
+                    </a>
+                </li>
+                <li class="list-group-item text-center">
+                    <a href="javascript:;" class="text-danger cancel-new-game" id="cancel-new-game">
+                        Cancel
+                    </a>
+                </li>
             </ul>
         </div>
 
