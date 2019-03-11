@@ -34,7 +34,7 @@ $(document).on("click", ".new-game-difficulty", function(e) {
         type: "POST",
         dataType: "json",
         data: {
-            _token: "{{ csrf_token() }}",
+            _token: csrf_token,
             difficulty: $(this).attr("id")[$(this).attr("id").length - 1],
         },
         success: function(response) {
@@ -73,7 +73,7 @@ function update() {
         type: "PUT",
         dataType: "json",
         data: {
-            _token: "{{ csrf_token() }}",
+            _token: csrf_token,
             moves: moves,
         },
         success: function(response) {
@@ -105,7 +105,7 @@ function fill_grid(game) {
             type: "DELETE",
             dataType: "json",
             data: {
-                _token: "{{ csrf_token() }}",
+                _token: csrf_token,
             },
             success: function(response) {
                 is_complete = 1;

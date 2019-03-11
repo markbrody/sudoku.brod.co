@@ -108,6 +108,7 @@
             var starting_cells = [];
             var selected_cell = -1;
             var is_complete = 0;
+            var csrf_token = "{{ csrf_token() }}";
         </script>
         <script src="{{ asset('js/sudoku.js') }}"></script>
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-51049739-3"></script>
