@@ -40,6 +40,9 @@ body {
     border: 1px solid #343a40;
     box-sizing: border-box;
     font-size: 1.2em;
+}
+
+.sudoku-grid-cell {
     color: #777;
 }
 
@@ -69,12 +72,13 @@ div.sudoku-grid-cell:nth-child(3n) {
 }
 
 .highlighted {
-    background-color: #ddd;
+    background-color: #e3e3e3;
+    color: #343a40;
 }
 
 .selected {
-    background-color: #fffdd0;
     background-color: #fffcb7;
+    color: #343a40;
 }
 
 .fixed {
@@ -186,13 +190,13 @@ div.sudoku-grid-cell:nth-child(3n) {
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Congratulations</h5>
+                        <h5 class="modal-title">Congratulations!</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>You win!</p>
+                        <img src="{{ asset('img/win.jpg') }}" class="w-100">
                     </div>
                 </div>
             </div>
