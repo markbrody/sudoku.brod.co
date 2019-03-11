@@ -18,7 +18,38 @@ body {
     margin: auto;
     margin-top: 20px;
     padding: 0;
-    border: 1px solid #666;
+    border: 1px solid #343a40;
+}
+
+.sudoku-grid-row:first-child {
+    border-top: 2px solid #343a40;
+}
+
+.sudoku-grid-row:nth-child(3n) {
+    border-bottom: 2px solid #343a40;
+}
+
+.sudoku-grid-cell,
+.keypad-cell button {
+    display: table-cell;
+    cursor: pointer;
+    width: calc(11.111vh / 1.8);
+    height: calc(11.111vh / 1.8);
+    text-align: center;
+    line-height: calc(11.111vh / 1.8);
+    border: 1px solid #343a40;
+    box-sizing: border-box;
+    font-size: 1.2em;
+    color: #777;
+}
+
+div.sudoku-grid-cell:first-child {
+    width: calc(11.112vh / 1.8);
+    border-left: 3px solid #343a40;
+}
+
+div.sudoku-grid-cell:nth-child(3n) {
+    border-right: 3px solid #343a40;
 }
 
 .keypad {
@@ -33,45 +64,21 @@ body {
     text-align: center;
 }
 
-.sudoku-grid-row:first-child {
-    border-top: 2px solid #666;
-}
-
-.sudoku-grid-row:nth-child(3n) {
-    border-bottom: 2px solid #666;
-}
-
-.sudoku-grid-cell {
-    display: table-cell;
-    cursor: pointer;
-    width: calc(11.111vh / 1.8);
-    height: calc(11.111vh / 1.8);
-    text-align: center;
-    line-height: calc(11.111vh / 1.8);
-    border: 1px solid #666;
-    box-sizing: border-box;
-    font-size: 1.2em;
-}
-
-div.sudoku-grid-cell:first-child {
-    width: calc(11.112vh / 1.8);
-    border-left: 3px solid #666;
-}
-
-div.sudoku-grid-cell:nth-child(3n) {
-    border-right: 3px solid #666;
+.keypad-cell button {
+    padding: 0;
 }
 
 .highlighted {
-    background-color: #eee;
+    background-color: #ddd;
 }
 
 .selected {
     background-color: #fffdd0;
+    background-color: #fffcb7;
 }
 
 .fixed {
-    color: #666;
+    color: #343a40;
     font-weight: bold;
 }
 
