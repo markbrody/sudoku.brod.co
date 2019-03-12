@@ -98,3 +98,15 @@ div.sudoku-grid-cell:nth-child(3n) {
     border-top: 1px solid #ccc !important;
 }
 
+.ad-container {
+    margin: auto;
+    width: calc(100vh / 1.8);
+    height: calc(20vh / 1.8);
+}
+
+.adsense {
+    overflow: hidden;
+    background-color: #eee;
+}
+
+

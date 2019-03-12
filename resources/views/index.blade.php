@@ -8,13 +8,6 @@
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ asset('css/sudoku.css') }}">
-        <style>
-            .ad-container {
-                margin: auto;
-                width: calc(100vh / 1.8);
-                height: calc(20vh / 1.8);
-            }
-        </style>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light">
@@ -58,6 +51,19 @@
             </div>
             <div class="row">
                 <div class="ad-container mt-2">
+{{--
+                    <small>Sponsored Ad</small> 
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle adsense"
+                         style="display:block"
+                         data-ad-client="ca-pub-1537800573901480"
+                         data-ad-slot="3142159506"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+--}}
                 </div>
             </div>
         </div>

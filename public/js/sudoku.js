@@ -4,6 +4,8 @@ $(document).on("keyup", function(e) {
             $("div[data-id=" + selected_cell + "]").text(e.key);
         else if (selected_cell >= 0 && (e.which == 8 || e.which == 46))
             $("div[data-id=" + selected_cell + "]").text("");
+        else
+            return;
         update();
     }
 });
@@ -22,6 +24,8 @@ $(".keypad-button").on("click", function(e) {
             $("div[data-id=" + selected_cell + "]").text($(this).data("value"));
         else if (selected_cell >= 0)
             $("div[data-id=" + selected_cell + "]").text("");
+        else
+            return;
         update();
     }
     e.stopPropagation();
@@ -98,7 +102,8 @@ function fill_grid(game) {
             filled_cells++;
             $("div[data-id=" + i + "]").text(game.moves[i]);
         }
-    $(".sudoku-grid-cell").height("1px"); // firefox hack
+    if (filled_cells > 0)
+        $(".sudoku-grid-cell").height("1px"); // firefox hack
     if (filled_cells == 81 && game.incorrect_cells.length == 0 && !is_complete) {
         $("#winning-modal").modal("show")
         $.ajax({
