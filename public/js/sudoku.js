@@ -98,6 +98,7 @@ function fill_grid(game) {
             filled_cells++;
             $("div[data-id=" + i + "]").text(game.moves[i]);
         }
+    $(".sudoku-grid-cell").height("1px"); // firefox hack
     if (filled_cells == 81 && game.incorrect_cells.length == 0 && !is_complete) {
         $("#winning-modal").modal("show")
         $.ajax({
