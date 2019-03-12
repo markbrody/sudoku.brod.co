@@ -8,6 +8,13 @@
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ asset('css/sudoku.css') }}">
+        <style>
+            .ad-container {
+                margin: auto;
+                width: calc(100vh / 1.8);
+                height: calc(20vh / 1.8);
+            }
+        </style>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light">
@@ -35,7 +42,7 @@
                 <div class="keypad">
                 @foreach (range(0, 4) as $value)
                     <div class="keypad-cell">
-                        <button class="btn btn-outline-dark mt-2 rounded-0 keypad-button" data-value="{{ $value }}">{!! $value ?: "&ndash;" !!}</button>
+                        <button class="btn btn-outline-dark mt-2 rounded-0 keypad-button" data-value="{{ $value }}">{!! $value ?: "&#9003;" !!}</button>
                     </div>
                 @endforeach
                 </div>
@@ -47,6 +54,10 @@
                         <button class="btn btn-outline-dark mt-2 rounded-0 keypad-button" data-value="{{ $value }}">{{ $value }}</button>
                     </div>
                 @endforeach
+                </div>
+            </div>
+            <div class="row">
+                <div class="ad-container mt-2">
                 </div>
             </div>
         </div>

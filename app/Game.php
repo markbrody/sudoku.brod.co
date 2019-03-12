@@ -8,7 +8,7 @@ class Game extends Model
 {
     protected $appends = ["starting_cells", "incorrect_cells"];
 
-    protected $fillable = ["moves", "puzzle_id"];
+    protected $fillable = ["moves", "puzzle_id", "player_id"];
 
     protected $hidden = ["puzzle_id", "created_at", "updated_at", "puzzle"];
 
