@@ -32,6 +32,7 @@ $(".keypad-button").on("click", function(e) {
 });
 
 $(document).on("click", ".new-game-difficulty", function(e) {
+    $(".sudoku-grid-cell").css({"height": "calc(11.111vh / 1.8)"}); // firefox hack
     $(".sudoku-grid-cell").removeClass("selected highlighted").text("");
     $.ajax({
         url: "/ajax/games",
@@ -103,7 +104,7 @@ function fill_grid(game) {
             $("div[data-id=" + i + "]").text(game.moves[i]);
         }
     if (filled_cells > 0)
-        $(".sudoku-grid-cell").height("1px"); // firefox hack
+        $(".sudoku-grid-cell").css({"height": "1px"}); // firefox hack
     if (filled_cells == 81 && game.incorrect_cells.length == 0 && !is_complete) {
         $("#winning-modal").modal("show")
         $.ajax({
